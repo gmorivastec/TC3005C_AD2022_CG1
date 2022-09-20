@@ -1,6 +1,6 @@
 WINFLAGS = -lglew32 -lglfw3 -lopengl32 -lglu32 -lgdi32
 MACFLAGS = -lglew -lglfw -framework OpenGL
-LINFLAGS = -lglew32 -lglfw3 -lopengl32 -lglu32 -lgdi32
+LINFLAGS = -lGLEW -lGLU -lGL -lglfw
 
 win: main.cpp
 	g++ -o test.exe main.cpp $(WINFLAGS) 
