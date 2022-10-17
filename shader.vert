@@ -5,6 +5,9 @@
 // especificación de parámetro de entrada
 layout(location = 0) in vec3 vertex_modelspace;
 
+// aquí puede haber variables a las que denominamos uniform
+uniform float desplazamiento;
+uniform mat4 mvp;
 
 // PREGUNTA - cuántas veces se ejecuta esto por frame?
 // RESPUESTA - tantos vertices como tengas
@@ -14,6 +17,17 @@ layout(location = 0) in vec3 vertex_modelspace;
 void main() {
 
     // en gl_Position guardamos la posición objetivo
-    gl_Position.xyz = vertex_modelspace;
-    gl_Position.w = 1.0;
+    vec4 transformado =  mvp * vec4(
+        vertex_modelspace.x,
+        vertex_modelspace.y,
+        vertex_modelspace.z,
+        1.0
+    );
+
+    gl_Position = vec4(
+       transformado.x + desplazamiento,
+       transformado.y,
+       transformado.z,
+       transformado.w 
+    );
 }
