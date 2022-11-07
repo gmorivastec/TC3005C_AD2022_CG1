@@ -25,7 +25,7 @@ void main() {
     );
 
     gl_Position = vec4(
-       transformado.x + desplazamiento,
+       transformado.x,
        transformado.y,
        transformado.z,
        transformado.w 

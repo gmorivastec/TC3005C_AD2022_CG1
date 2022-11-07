@@ -17,6 +17,7 @@
 
 #include "CargarShaders.hpp"
 #include "CalcularMVP.hpp"
+#include "ParseOBJ.hpp"
 
 using namespace std;
 
@@ -101,11 +102,17 @@ int main(){
          0.0f,  0.5f, 0.0f 
     };
 
+    vector<vec3> vertices;
+    vector<vec3> resultado;
+    ParseOBJ("triangulo.obj", vertices, resultado);
+
     GLuint vertexBuffer;
 
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer_data), vertex_buffer_data, GL_STATIC_DRAW);    
+    //glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer_data), vertex_buffer_data, GL_STATIC_DRAW);
+
+    glBufferData(GL_ARRAY_BUFFER, resultado.size() * sizeof(vec3), &resultado[0], GL_STATIC_DRAW);    
 
     // para poder mandar un valor uniforme
     // necesitamos un índice que nos diga cuál es
